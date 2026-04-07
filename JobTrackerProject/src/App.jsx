@@ -1,38 +1,41 @@
+import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import AppRouter from "./components/routing/AppRouter";
 import setAuthToken from "./utils/setAuthToken";
 import { useEffect } from "react";
 
-//setAuthToken();
-
 function App() {
   useEffect(() => {
-    setAuthToken(); // 🔥 VERY IMPORTANT
+    setAuthToken(); // set token on reload
   }, []);
+
   return (
-    <AuthProvider>
-      <AppRouter />
-    </AuthProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <AppRouter />
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
 export default App;
 
+// import { AuthProvider } from "./context/AuthContext";
+// import AppRouter from "./components/routing/AppRouter";
+// import setAuthToken from "./utils/setAuthToken";
+// import { useEffect } from "react";
 
-
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
+// //setAuthToken();
 
 // function App() {
-//   const [count, setCount] = useState(0)
-
+//   useEffect(() => {
+//     setAuthToken(); // 🔥 VERY IMPORTANT
+//   }, []);
 //   return (
-//     <>
-      
-//     </>
-//   )
+//     <AuthProvider>
+//       <AppRouter />
+//     </AuthProvider>
+//   );
 // }
 
-// export default App
+// export default App;

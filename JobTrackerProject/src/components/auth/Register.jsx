@@ -18,7 +18,7 @@ const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     await register(formData);
-    navigate("/login");
+    //navigate("/login");
   };
 
   return (

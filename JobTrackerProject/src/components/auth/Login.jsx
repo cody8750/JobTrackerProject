@@ -17,7 +17,7 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     await login(formData);
-    navigate("/");
+    //navigate("/");
   };
 
   return (
