@@ -12,16 +12,15 @@ connectDB();
 
 const app = express();
 
-// ✅ CORS CONFIG (IMPORTANT)
+// ✅ CORS CONFIG
 const allowedOrigins = [
-  "http://localhost:5173", // local frontend
-  "https://job-tracker-project-d4xs.vercel.app", // deployed frontend
+  "http://localhost:5173",
+  "https://job-tracker-project-d4xs.vercel.app",
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow requests with no origin (like Postman)
       if (!origin) return callback(null, true);
 
       if (allowedOrigins.includes(origin)) {
@@ -33,6 +32,9 @@ app.use(
     credentials: true,
   })
 );
+
+// ✅ 🔥 HANDLE PREFLIGHT REQUESTS
+app.options("*", cors());
 
 // ✅ Middleware
 app.use(express.json());
