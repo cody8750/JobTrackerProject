@@ -15,7 +15,7 @@ const app = express();
 // ✅ CORS CONFIG (IMPORTANT)
 const allowedOrigins = [
   "http://localhost:5173", // local frontend
-  "https://jobtrackerproject.vercel.app", // deployed frontend
+  "https://job-tracker-project-d4xs.vercel.app", // deployed frontend
 ];
 
 app.use(
