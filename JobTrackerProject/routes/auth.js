@@ -5,7 +5,35 @@ import User from "../models/user.js";
 
 const router = express.Router();
 
-// LOGIN
+// ✅ REGISTER (ADD THIS)
+router.post("/register", async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    // check existing user
+    let user = await User.findOne({ email });
+    if (user) {
+      return res.status(400).json({ msg: "User already exists" });
+    }
+
+    // hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // create user
+    user = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+    });
+
+    res.json({ msg: "User registered successfully" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// ✅ LOGIN (your existing code)
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -16,7 +44,6 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
 
-    // ✅ FIXED PAYLOAD
     const payload = {
       id: user.id,
     };
